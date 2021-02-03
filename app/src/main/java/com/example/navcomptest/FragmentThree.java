@@ -5,7 +5,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -23,6 +25,8 @@ public class FragmentThree extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         Log.d(LOG_TAG, "onCreate");
+        requireActivity().getOnBackPressedDispatcher().addCallback(this, onBackPressedCallback);
+        onBackPressedCallback.setEnabled(false);
         super.onCreate(savedInstanceState);
     }
 
@@ -36,6 +40,7 @@ public class FragmentThree extends Fragment {
         fragmentThreeBinding.buttonGotoFragmentOne.setOnClickListener(onClickListener);
         fragmentThreeBinding.buttonGotoFragmentTwo.setOnClickListener(onClickListener);
         fragmentThreeBinding.buttonGotoFragmentFour.setOnClickListener(onClickListener);
+        fragmentThreeBinding.switch1.setOnCheckedChangeListener(onCheckedChangeListener);
         return fragmentThreeBinding.getRoot();
     }
 
@@ -63,6 +68,17 @@ public class FragmentThree extends Fragment {
         super.onDestroy();
     }
 
+    CompoundButton.OnCheckedChangeListener onCheckedChangeListener = new CompoundButton.OnCheckedChangeListener() {
+        @Override
+        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+            if(isChecked){
+                onBackPressedCallback.setEnabled(true);
+            } else {
+                onBackPressedCallback.setEnabled(false);
+            }
+        }
+    };
+
     View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -78,6 +94,14 @@ public class FragmentThree extends Fragment {
                     navController.navigate(R.id.action_fragmentThree_to_fragmentFour);
                     break;
             }
+        }
+    };
+
+    OnBackPressedCallback onBackPressedCallback = new OnBackPressedCallback(true /* enabled by default */) {
+        @Override
+        public void handleOnBackPressed() {
+            Log.d(LOG_TAG, "handleOnBackPressed");
+            fragmentThreeBinding.switch1.setChecked(false);
         }
     };
 }

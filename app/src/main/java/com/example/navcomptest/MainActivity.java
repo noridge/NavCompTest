@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.d(LOG_TAG, "onCreate");
         super.onCreate(savedInstanceState);
         activityMainBinding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(activityMainBinding.getRoot());/*
@@ -47,6 +48,29 @@ public class MainActivity extends AppCompatActivity {
         navController.addOnDestinationChangedListener(onDestinationChangedListener);
     }
 
+    @Override
+    protected void onResume() {
+        Log.d(LOG_TAG, "onResume");
+        super.onResume();
+    }
+
+    @Override
+    public void onBackPressed() {
+        Log.d(LOG_TAG, "onBackPressed");
+        super.onBackPressed();
+    }
+
+    @Override
+    protected void onPause() {
+        Log.d(LOG_TAG, "onPause");
+        super.onPause();
+    }
+
+    @Override
+    protected void onDestroy() {
+        Log.d(LOG_TAG, "onDestroy");
+        super.onDestroy();
+    }
 
     NavController.OnDestinationChangedListener onDestinationChangedListener = new NavController.OnDestinationChangedListener() {
         @Override
