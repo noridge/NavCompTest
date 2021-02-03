@@ -1,0 +1,86 @@
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/fragmentOne">
+    <fragment
+        android:id="@+id/fragmentOne"
+        android:name="com.example.navcomptest.FragmentOne"
+        android:label="" >
+        <action
+            android:id="@+id/action_fragmentOne_to_fragmentTwo"
+            app:destination="@id/fragmentTwo"
+            app:popUpTo="@id/fragmentTwo"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_fragmentOne_to_fragmentThree"
+            app:destination="@id/fragmentThree"
+            app:popUpTo="@id/fragmentThree"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_fragmentOne_to_fragmentFour"
+            app:destination="@id/fragmentFour"
+            app:popUpTo="@id/fragmentFour"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentTwo"
+        android:name="com.example.navcomptest.FragmentTwo"
+        android:label="" >
+        <action
+            android:id="@+id/action_fragmentTwo_to_fragmentOne"
+            app:destination="@id/fragmentOne"
+            app:popUpTo="@id/fragmentOne"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_fragmentTwo_to_fragmentThree"
+            app:destination="@id/fragmentThree"
+            app:popUpTo="@id/fragmentThree"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_fragmentTwo_to_fragmentFour"
+            app:destination="@id/fragmentFour"
+            app:popUpTo="@id/fragmentFour"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentThree"
+        android:name="com.example.navcomptest.FragmentThree"
+        android:label="" >
+        <action
+            android:id="@+id/action_fragmentThree_to_fragmentOne"
+            app:destination="@id/fragmentOne"
+            app:popUpTo="@id/fragmentOne"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_fragmentThree_to_fragmentTwo"
+            app:destination="@id/fragmentTwo"
+            app:popUpTo="@id/fragmentTwo"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_fragmentThree_to_fragmentFour"
+            app:destination="@id/fragmentFour"
+            app:popUpTo="@id/fragmentFour"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentFour"
+        android:name="com.example.navcomptest.FragmentFour"
+        android:label="" >
+        <action
+            android:id="@+id/action_fragmentFour_to_fragmentOne"
+            app:destination="@id/fragmentOne"
+            app:popUpTo="@id/fragmentOne"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_fragmentFour_to_fragmentTwo"
+            app:destination="@id/fragmentTwo"
+            app:popUpTo="@id/fragmentTwo"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_fragmentFour_to_fragmentThree"
+            app:destination="@id/fragmentThree"
+            app:popUpTo="@id/fragmentThree"
+            app:popUpToInclusive="true" />
+    </fragment>
+</navigation>
