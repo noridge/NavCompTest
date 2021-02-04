@@ -3,6 +3,7 @@ package com.example.navcomptest;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -26,6 +27,8 @@ public class MainActivity extends AppCompatActivity {
     private static final String LOG_TAG = MainActivity.class.getSimpleName();
     private NavController navController;
     private ActivityMainBinding activityMainBinding;
+    private Toolbar toolbar;
+    private AppBarConfiguration appBarConfiguration;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         topLevelDestinations.add(R.id.fragmentHome);
         topLevelDestinations.add(R.id.fragmentOne);
         topLevelDestinations.add(R.id.fragmentAbout);
-        AppBarConfiguration appBarConfiguration = new AppBarConfiguration
+        appBarConfiguration = new AppBarConfiguration
                 .Builder(topLevelDestinations)
                 .setOpenableLayout(drawerLayout)
                 .build();
@@ -49,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         Use toolbar as the action bar.
         Use a textview as a replacement for the toolbar's title.
          */
-        Toolbar toolbar = activityMainBinding.toolbar;
+        toolbar = activityMainBinding.toolbar;
         NavigationUI.setupWithNavController(toolbar, navController, appBarConfiguration);
         NavigationView navigationView = activityMainBinding.navView;
         NavigationUI.setupWithNavController(navigationView, navController);
@@ -93,21 +96,27 @@ public class MainActivity extends AppCompatActivity {
             switch (destination.getId()) {
                 case R.id.fragmentOne:
                     activityMainBinding.toolbarTitle.setText("Fragment One");
+                    NavigationUI.setupWithNavController(toolbar, navController, appBarConfiguration);
                     break;
                 case R.id.fragmentTwo:
                     activityMainBinding.toolbarTitle.setText("Fragment Two");
+                    NavigationUI.setupWithNavController(toolbar, navController, appBarConfiguration);
                     break;
                 case R.id.fragmentThree:
                     activityMainBinding.toolbarTitle.setText("Fragment Three");
+                    toolbar.setNavigationOnClickListener(v -> Log.d(LOG_TAG, "Clicked nav: " + v.getId()));
                     break;
                 case R.id.fragmentFour:
                     activityMainBinding.toolbarTitle.setText("Fragment Four");
+                    NavigationUI.setupWithNavController(toolbar, navController, appBarConfiguration);
                     break;
                 case R.id.fragmentAbout:
                     activityMainBinding.toolbarTitle.setText("About");
+                    NavigationUI.setupWithNavController(toolbar, navController, appBarConfiguration);
                     break;
                 case R.id.fragmentHome:
                     activityMainBinding.toolbarTitle.setText("Home");
+                    NavigationUI.setupWithNavController(toolbar, navController, appBarConfiguration);
                     break;
                 default:
                     Log.w(LOG_TAG, "Unknown destination fragment");
