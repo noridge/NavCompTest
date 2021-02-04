@@ -2,6 +2,7 @@ package com.example.navcomptest;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -31,16 +32,11 @@ public class MainActivity extends AppCompatActivity {
         Log.d(LOG_TAG, "onCreate");
         super.onCreate(savedInstanceState);
         activityMainBinding = ActivityMainBinding.inflate(getLayoutInflater());
-        setContentView(activityMainBinding.getRoot());/*
-        Use toolbar as the action bar.
-        Use a textview as a replacement for the toolbar's title.
-         */
-        Toolbar toolbar = activityMainBinding.toolbar;
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        setContentView(activityMainBinding.getRoot());
+
+        navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         DrawerLayout drawerLayout = activityMainBinding.drawerLayout;
         drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
-        navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         Set<Integer> topLevelDestinations = new HashSet<>();
         topLevelDestinations.add(R.id.fragmentHome);
         topLevelDestinations.add(R.id.fragmentOne);
@@ -49,10 +45,22 @@ public class MainActivity extends AppCompatActivity {
                 .Builder(topLevelDestinations)
                 .setOpenableLayout(drawerLayout)
                 .build();
+        /*
+        Use toolbar as the action bar.
+        Use a textview as a replacement for the toolbar's title.
+         */
+        Toolbar toolbar = activityMainBinding.toolbar;
         NavigationUI.setupWithNavController(toolbar, navController, appBarConfiguration);
         NavigationView navigationView = activityMainBinding.navView;
         NavigationUI.setupWithNavController(navigationView, navController);
         navController.addOnDestinationChangedListener(onDestinationChangedListener);
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        Log.d(LOG_TAG, "onOptionsItemSelected: " + item.getItemId());
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
