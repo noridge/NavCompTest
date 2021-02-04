@@ -53,6 +53,8 @@ public class MainActivity extends AppCompatActivity {
         Use a textview as a replacement for the toolbar's title.
          */
         toolbar = activityMainBinding.toolbar;
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
         NavigationUI.setupWithNavController(toolbar, navController, appBarConfiguration);
         NavigationView navigationView = activityMainBinding.navView;
         NavigationUI.setupWithNavController(navigationView, navController);
