@@ -35,6 +35,7 @@ public class FragmentFour extends Fragment {
         fragmentFourBinding.buttonGotoFragmentOne.setOnClickListener(onClickListener);
         fragmentFourBinding.buttonGotoFragmentTwo.setOnClickListener(onClickListener);
         fragmentFourBinding.buttonGotoFragmentThree.setOnClickListener(onClickListener);
+        fragmentFourBinding.buttonNext.setOnClickListener(onClickListener);
         return fragmentFourBinding.getRoot();
     }
 
@@ -75,6 +76,8 @@ public class FragmentFour extends Fragment {
                 case R.id.button_gotoFragmentThree:
                     navController.navigate(R.id.action_fragmentFour_to_fragmentThree);
                     break;
+                case R.id.button_next:
+                    navController.navigate(R.id.action_fragmentFour_to_fragmentHome);
             }
         }
     };

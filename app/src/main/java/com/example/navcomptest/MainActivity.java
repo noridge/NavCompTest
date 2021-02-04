@@ -17,6 +17,9 @@ import androidx.navigation.ui.NavigationUI;
 import com.example.navcomptest.databinding.ActivityMainBinding;
 import com.google.android.material.navigation.NavigationView;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class MainActivity extends AppCompatActivity {
 
     private static final String LOG_TAG = MainActivity.class.getSimpleName();
@@ -38,8 +41,12 @@ public class MainActivity extends AppCompatActivity {
         DrawerLayout drawerLayout = activityMainBinding.drawerLayout;
         drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
         navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+        Set<Integer> topLevelDestinations = new HashSet<>();
+        topLevelDestinations.add(R.id.fragmentHome);
+        topLevelDestinations.add(R.id.fragmentOne);
+        topLevelDestinations.add(R.id.fragmentAbout);
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration
-                .Builder(navController.getGraph())
+                .Builder(topLevelDestinations)
                 .setOpenableLayout(drawerLayout)
                 .build();
         NavigationUI.setupWithNavController(toolbar, navController, appBarConfiguration);
@@ -55,12 +62,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onBackPressed() {
-        Log.d(LOG_TAG, "onBackPressed");
-        super.onBackPressed();
-    }
-
-    @Override
     protected void onPause() {
         Log.d(LOG_TAG, "onPause");
         super.onPause();
@@ -70,6 +71,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onDestroy() {
         Log.d(LOG_TAG, "onDestroy");
         super.onDestroy();
+    }
+
+    @Override
+    public void onBackPressed() {
+        Log.d(LOG_TAG, "onBackPressed");
+        super.onBackPressed();
     }
 
     NavController.OnDestinationChangedListener onDestinationChangedListener = new NavController.OnDestinationChangedListener() {
@@ -87,6 +94,12 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case R.id.fragmentFour:
                     activityMainBinding.toolbarTitle.setText("Fragment Four");
+                    break;
+                case R.id.fragmentAbout:
+                    activityMainBinding.toolbarTitle.setText("About");
+                    break;
+                case R.id.fragmentHome:
+                    activityMainBinding.toolbarTitle.setText("Home");
                     break;
                 default:
                     Log.w(LOG_TAG, "Unknown destination fragment");
