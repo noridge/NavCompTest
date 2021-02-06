@@ -1,15 +1,18 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
     app:startDestination="@id/fragmentHome">
     <fragment
         android:id="@+id/fragmentAbout"
         android:name="com.example.navcomptest.FragmentAbout"
-        android:label="" />
+        android:label=""
+        tools:layout="@layout/fragment_about" />
     <fragment
         android:id="@+id/fragmentHome"
         android:name="com.example.navcomptest.FragmentHome"
-        android:label="" >
+        android:label=""
+        tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_fragmentHome_to_fragmentAbout"
             app:destination="@id/fragmentAbout"
@@ -21,12 +24,14 @@
             app:popUpTo="@id/fragmentHome"
             app:popUpToInclusive="true" />
     </fragment>
-    <navigation android:id="@+id/setup_nav_graph"
+    <navigation
+        android:id="@+id/setup_nav_graph"
         app:startDestination="@id/fragmentOne">
         <fragment
             android:id="@+id/fragmentTwo"
             android:name="com.example.navcomptest.FragmentTwo"
-            android:label="">
+            android:label=""
+            tools:layout="@layout/fragment_one">
             <action
                 android:id="@+id/action_fragmentTwo_to_fragmentOne"
                 app:destination="@id/fragmentOne"
@@ -46,7 +51,8 @@
         <fragment
             android:id="@+id/fragmentFour"
             android:name="com.example.navcomptest.FragmentFour"
-            android:label="">
+            android:label=""
+            tools:layout="@layout/fragment_four">
             <action
                 android:id="@+id/action_fragmentFour_to_fragmentOne"
                 app:destination="@id/fragmentOne"
@@ -71,7 +77,8 @@
         <fragment
             android:id="@+id/fragmentOne"
             android:name="com.example.navcomptest.FragmentOne"
-            android:label="">
+            android:label=""
+            tools:layout="@layout/fragment_one">
             <action
                 android:id="@+id/action_fragmentOne_to_fragmentTwo"
                 app:destination="@id/fragmentTwo"
@@ -91,7 +98,8 @@
         <fragment
             android:id="@+id/fragmentThree"
             android:name="com.example.navcomptest.FragmentThree"
-            android:label="">
+            android:label=""
+            tools:layout="@layout/fragment_three">
             <action
                 android:id="@+id/action_fragmentThree_to_fragmentOne"
                 app:destination="@id/fragmentOne"
