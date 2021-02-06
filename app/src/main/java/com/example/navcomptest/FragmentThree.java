@@ -7,9 +7,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
 
+
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -21,12 +23,15 @@ public class FragmentThree extends Fragment {
     private static final String LOG_TAG = FragmentThree.class.getSimpleName();
     private FragmentThreeBinding fragmentThreeBinding;
     private NavController navController;
+    private Toolbar activityToolbar;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         Log.d(LOG_TAG, "onCreate");
         requireActivity().getOnBackPressedDispatcher().addCallback(this, onBackPressedCallback);
         onBackPressedCallback.setEnabled(false);
+        activityToolbar = getActivity().findViewById(R.id.toolbar);
+        activityToolbar.setNavigationOnClickListener(v -> onNavUpClicked());
         super.onCreate(savedInstanceState);
     }
 
@@ -71,7 +76,7 @@ public class FragmentThree extends Fragment {
     CompoundButton.OnCheckedChangeListener onCheckedChangeListener = new CompoundButton.OnCheckedChangeListener() {
         @Override
         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-            if(isChecked){
+            if (isChecked) {
                 onBackPressedCallback.setEnabled(true);
             } else {
                 onBackPressedCallback.setEnabled(false);
@@ -104,4 +109,12 @@ public class FragmentThree extends Fragment {
             fragmentThreeBinding.switch1.setChecked(false);
         }
     };
+
+    public void onNavUpClicked() {
+        if (fragmentThreeBinding.switch1.isChecked()) {
+            fragmentThreeBinding.switch1.setChecked(false);
+        } else {
+            navController.popBackStack();
+        }
+    }
 }

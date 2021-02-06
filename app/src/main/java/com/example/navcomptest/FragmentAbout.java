@@ -11,7 +11,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.navcomptest.databinding.FragmentAboutBinding;
-import com.example.navcomptest.databinding.FragmentHomeBinding;
 
 public class FragmentAbout extends Fragment {
 

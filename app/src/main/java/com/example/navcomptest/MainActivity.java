@@ -2,8 +2,6 @@ package com.example.navcomptest;
 
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MenuItem;
-import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -39,7 +37,6 @@ public class MainActivity extends AppCompatActivity {
 
         navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         DrawerLayout drawerLayout = activityMainBinding.drawerLayout;
-        drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
         Set<Integer> topLevelDestinations = new HashSet<>();
         topLevelDestinations.add(R.id.fragmentHome);
         topLevelDestinations.add(R.id.fragmentOne);
@@ -61,13 +58,6 @@ public class MainActivity extends AppCompatActivity {
         navController.addOnDestinationChangedListener(onDestinationChangedListener);
     }
 
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        Log.d(LOG_TAG, "onOptionsItemSelected: " + item.getItemId());
-        return super.onOptionsItemSelected(item);
-    }
-
     @Override
     protected void onResume() {
         Log.d(LOG_TAG, "onResume");
@@ -86,12 +76,6 @@ public class MainActivity extends AppCompatActivity {
         super.onDestroy();
     }
 
-    @Override
-    public void onBackPressed() {
-        Log.d(LOG_TAG, "onBackPressed");
-        super.onBackPressed();
-    }
-
     NavController.OnDestinationChangedListener onDestinationChangedListener = new NavController.OnDestinationChangedListener() {
         @Override
         public void onDestinationChanged(@NonNull NavController controller, @NonNull NavDestination destination, @Nullable Bundle arguments) {
@@ -106,7 +90,6 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case R.id.fragmentThree:
                     activityMainBinding.toolbarTitle.setText("Fragment Three");
-                    toolbar.setNavigationOnClickListener(v -> Log.d(LOG_TAG, "Clicked nav: " + v.getId()));
                     break;
                 case R.id.fragmentFour:
                     activityMainBinding.toolbarTitle.setText("Fragment Four");

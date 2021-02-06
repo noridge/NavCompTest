@@ -9,12 +9,8 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 
-import com.example.navcomptest.databinding.FragmentAboutBinding;
 import com.example.navcomptest.databinding.FragmentHomeBinding;
-import com.example.navcomptest.databinding.FragmentOneBinding;
 
 public class FragmentHome extends Fragment {
 
